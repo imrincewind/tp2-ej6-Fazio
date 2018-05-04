@@ -1,9 +1,10 @@
 package ej6;
 
+
 public class ArbolBinario {
-	private Nodo root = new Nodo();
+	private Nodo root = null;
 	private int size;
-	private Nodo answer = null;
+
 
 	public Nodo getRoot() {
 		return root;
@@ -13,7 +14,7 @@ public class ArbolBinario {
 		if (size != 0) {
 			if (findElem(root, elem).getInfo() == elem) {
 				
-				answer = null; 
+				
 				return true;
 			} else {
 				return false;
@@ -28,23 +29,22 @@ public class ArbolBinario {
 	private Nodo findElem(Nodo n, Object elem) {
 		if (n != null) {
 			if (n.getInfo().equals(elem)) {
-				answer = n;
+				return n;
 			} else if (n.getInfo().toString().compareTo(elem.toString()) < 0) {
 				if (n.getRight() != null) {
-					answer = n.getRight();
-					findElem(answer, elem); 
+					
+					findElem(n.getRight(), elem); 
 				} else { 
-					answer = n; 
+					return n; 
 				} 
 			} else if (n.getLeft() != null) { 
-				answer = n.getLeft();
-				findElem(answer, elem);
+				findElem(n.getLeft(), elem);
 			} else {
-				answer = n;
+				return n;
 			}
 		}
 
-		return answer;
+		return n;
 	}
 
 	public boolean isEmpty() {
@@ -65,7 +65,8 @@ public class ArbolBinario {
 				} 
 			}
 		} else {
-			root.setInfo(o);
+			
+			this.root = nodo;
 			size++;
 		}
 		
